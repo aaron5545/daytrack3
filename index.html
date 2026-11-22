@@ -199,7 +199,6 @@
   .g-chart svg{display:block;max-width:100%}
   .g-col{cursor:pointer}
   .g-chart svg > :not(.g-col){pointer-events:none} /* bars, labels and lines never block the day hover */
-  .g-pulse{transform-box:fill-box;transform-origin:center;animation:cdpulse 2.2s ease-in-out infinite}
   @keyframes cdpulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:.35;transform:scale(1.5)}}
 
   /* Goal modal */
@@ -733,6 +732,7 @@
   function editHoursInline(el,dayISO,cls){
     var inp=document.createElement("input");
     inp.type="number"; inp.min="0"; inp.max="24"; inp.step="1"; inp.inputMode="numeric"; inp.className=cls;
+    inp.addEventListener("wheel",function(e){ e.preventDefault(); },{passive:false});
     inp.value=hoursOn(dayISO)||"";
     inp.placeholder="0";
     el.parentNode.replaceChild(inp,el); inp.focus(); inp.select();
@@ -993,14 +993,13 @@
     for(var i=0;i<total;i++){
       var x=LW+i*slot+slot/2, iso=fmtISO(addDays(parseISO(v.start),i)), bx=(x-barW/2).toFixed(1), bw=barW.toFixed(1);
       var isToday=(iso===todayISO), isSel=(iso===sel), past=(i<=v.lastIdx), col=isSel?CT:CG;
-      cols+='<rect class="g-col" data-iso="'+iso+'" x="'+(LW+i*slot).toFixed(1)+'" y="0" width="'+slot.toFixed(1)+'" height="'+(b2+2)+'" fill="'+(isSel?CAS:CH)+'" fill-opacity="'+(isSel?"1":"0")+'" rx="3"/>';
+      cols+='<rect class="g-col" data-iso="'+iso+'" x="'+(LW+i*slot).toFixed(1)+'" y="0" width="'+slot.toFixed(1)+'" height="'+(b2+2)+'" fill="'+CH+'" fill-opacity="'+(isSel?"1":"0")+'" rx="3"/>';
       if(past){
         var r=dayRatio(iso), h1=r>0?3+r*(rowH-10):3;
         out+='<rect x="'+bx+'" y="'+(b1-h1).toFixed(1)+'" width="'+bw+'" height="'+h1.toFixed(1)+'" rx="'+rx+'" fill="'+(r>0?col:CS)+'"/>';
         var hr=hoursOn(iso), h2=hr>0?3+hr/peak*(rowH-18):3;
         out+='<rect x="'+bx+'" y="'+(b2-h2).toFixed(1)+'" width="'+bw+'" height="'+h2.toFixed(1)+'" rx="'+rx+'" fill="'+(hr>0?col:CS)+'"/>';
         if(hr>0&&showVals) out+='<text x="'+x.toFixed(1)+'" y="'+(b2-h2-4).toFixed(1)+'" text-anchor="middle" style="'+mono+'font-size:9.5px;fill:'+(isSel?CT:CF)+'">'+hr+'</text>';
-        if(isToday && !isSel) out+='<circle class="g-pulse" cx="'+x.toFixed(1)+'" cy="'+(b1-h1-6).toFixed(1)+'" r="2.6" fill="'+CT+'"/>';
       } else {
         var last=(i===total-1);
         out+='<rect x="'+bx+'" y="'+(b1-3)+'" width="'+bw+'" height="3" rx="'+rx+'" fill="'+(last?CA:CS)+'"/>';
