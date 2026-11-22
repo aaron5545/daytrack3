@@ -172,7 +172,8 @@
   .g-hval{min-width:62px;height:44px;border:none;border-left:1px solid var(--line);border-right:1px solid var(--line);background:transparent;cursor:text;font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.02em;color:var(--ink);padding:0 8px}
   .g-hval small{font-size:13px;color:var(--faint);margin-left:1px}
   .g-hin{width:62px;height:44px;border:none;border-left:1px solid var(--line);border-right:1px solid var(--line);outline:none;background:var(--accent-soft);text-align:center;font-family:var(--display);font-weight:600;font-size:22px;color:var(--ink);-moz-appearance:textfield}
-  .g-hstats{display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .g-hstats{display:flex;flex-direction:column;gap:2px;white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .g-hstats .g-tgt{color:var(--faint);font-size:10.5px}
   .g-hstats b{font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);margin-right:2px}
   .g-right{flex:1;min-width:0;display:flex;flex-direction:column;padding:16px 20px 12px}
   .g-tip{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted);height:22px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;margin-bottom:6px}
@@ -871,7 +872,7 @@
             '<div class="g-stepper"><button class="g-step" id="gMinus" aria-label="One hour less"'+(h<=0?' disabled':'')+'>−</button>'+
             '<button class="g-hval" id="gHval" title="Click to type the hours">'+h+'<small>h</small></button>'+
             '<button class="g-step" id="gPlus" aria-label="One hour more"'+(h>=24?' disabled':'')+'>+</button></div>'+
-            '<div class="g-hstats"><span><b>'+r1(v.avg)+'h</b> avg / day</span><span><b>'+v.hours+'h</b> total \u00b7 target '+hoursTarget()+'h</span></div>'+
+            '<div class="g-hstats"><span><b>'+r1(v.avg)+'h</b> avg / day</span><span><b>'+v.hours+'h</b> total</span><span class="g-tgt">target '+hoursTarget()+'h / day</span></div>'+
           '</div>'+
         '</div>'+
       '</div>'+
