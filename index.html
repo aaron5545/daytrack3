@@ -177,7 +177,7 @@
   .g-prog{height:6px;background:var(--track);border-radius:99px;overflow:hidden;margin:12px 0 8px}
   .g-prog div{height:100%;background:var(--accent);border-radius:99px;transition:width .5s var(--ease)}
   .g-meta{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.02em}
-  .g-hrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;min-height:18px}
+  .g-hrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;min-height:20px;white-space:nowrap}
   .g-link{border:none;background:transparent;color:var(--accent);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:2px 4px;border-radius:5px}
   .g-link:hover{background:var(--accent-soft)}
   .g-hctl{display:flex;align-items:center;gap:12px}
@@ -195,7 +195,7 @@
   .g-tip{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted);height:22px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;margin-bottom:6px}
   .g-tip b{color:var(--ink);font-weight:500}
   .g-tip .dotsep{color:var(--faint)}
-  .g-chart{flex:1;position:relative;display:flex;align-items:flex-end}
+  .g-chart{flex:1;min-height:0;position:relative;display:flex;align-items:flex-end}
   .g-chart svg{display:block;max-width:100%}
   .g-col{cursor:pointer}
   .g-chart svg > :not(.g-col){pointer-events:none} /* bars, labels and lines never block the day hover */
@@ -912,7 +912,7 @@
           '<div class="g-meta">'+meta+'</div>'+
         '</div>'+
         '<div class="g-sec">'+
-          '<div class="g-hrow"><span class="g-eyebrow">Hours worked · <b>'+dayLbl+'</b></span>'+(day!==todayISO?'<button class="g-link" id="gBackToday">Back to today</button>':'')+'</div>'+
+          '<div class="g-hrow"><span class="g-eyebrow">'+(day===todayISO?'Hours worked · <b>today</b>':'Hours · <b>'+dayLbl+'</b>')+'</span>'+(day!==todayISO?'<button class="g-link" id="gBackToday">← Today</button>':'')+'</div>'+
           '<div class="g-hctl">'+
             '<div class="g-stepper"><button class="g-step" id="gMinus" aria-label="One hour less"'+(h<=0?' disabled':'')+'>−</button>'+
             '<button class="g-hval" id="gHval" title="Click to type the hours">'+h+'<small>h</small></button>'+
@@ -963,8 +963,10 @@
     }
     idleTip();
     var CG=cvar('--cd-green'), CS=cvar('--cd-stub'), CT=cvar('--cd-today'), CL=cvar('--line'), CF=cvar('--faint'), CH=cvar('--hover-2'), CA=cvar('--accent'), CAS=cvar('--accent-soft');
+    holder.innerHTML='';
     var W=Math.max(200,Math.floor(holder.clientWidth||holder.getBoundingClientRect().width||420));
-    var LW=48, rowH=54, gap=16, axisH=18;
+    var LW=48, gap=18, axisH=18;
+    var avail=holder.clientHeight||0, rowH=Math.max(50,Math.min(92,Math.floor((avail-gap-axisH-2)/2)));
     var b1=rowH, b2=rowH*2+gap, H=b2+axisH;
     var total=v.total, slot=(W-LW)/total, barW=Math.max(1.5,Math.min(slot*0.64,18)), rx=Math.min(2,barW/2);
     var peak=4; for(var k=0;k<=v.lastIdx;k++){var hk=hoursOn(fmtISO(addDays(parseISO(v.start),k))); if(hk>peak)peak=hk;}
