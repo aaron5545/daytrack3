@@ -136,15 +136,15 @@
   .empty{color:var(--faint);font-size:12px;font-style:italic;padding:10px 6px;animation:fadeIn .3s var(--ease) both}
   .drop-line{height:0;border-top:2px solid var(--accent);border-radius:2px;margin:1px 5px;pointer-events:none}
 
-  .col-foot{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:0 8px 0 0}
+  .col-foot{display:flex;align-items:center;justify-content:space-between;gap:2px;padding:0 6px 0 0}
   .hrs{display:flex;align-items:center;gap:2px;flex:none;font-family:var(--mono);font-size:12px;color:var(--faint)}
-  .hrs .hv{min-width:26px;text-align:center;transition:color .16s var(--ease)}
+  .hrs .hv{min-width:22px;text-align:center;transition:color .16s var(--ease)}
   .hrs.has .hv{color:var(--ink);font-weight:500}
-  .hrs button{border:none;background:transparent;color:var(--faint);width:20px;height:22px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-size:14px;line-height:1;padding:0;opacity:.55;transition:opacity .14s var(--ease),background .14s var(--ease),color .14s var(--ease)}
+  .hrs button{border:none;background:transparent;color:var(--faint);width:18px;height:22px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-size:14px;line-height:1;padding:0;opacity:.55;transition:opacity .14s var(--ease),background .14s var(--ease),color .14s var(--ease)}
   .col:hover .hrs button,.col.is-today .hrs button,.hrs button:focus-visible{opacity:1}
   .hrs button:hover{background:var(--hover-2);color:var(--ink)}
   .hrs svg{display:block;margin-right:3px;opacity:.8}
-  .add-task{display:flex;align-items:center;gap:6px;flex:1;min-width:0;text-align:left;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:var(--body);font-size:12.5px;padding:9px 6px 12px 15px;transition:color .14s var(--ease),background .14s var(--ease)}
+  .add-task{display:flex;align-items:center;gap:6px;flex:1;min-width:0;text-align:left;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:var(--body);font-size:12.5px;padding:9px 4px 12px 13px;white-space:nowrap;overflow:hidden;transition:color .14s var(--ease),background .14s var(--ease)}
   .add-task:hover{color:var(--accent);background:var(--hover)}
   .add-task:active{background:var(--hover-2)}
   .add-task .plus{font-family:var(--mono);font-size:14px;line-height:1;transition:transform .18s var(--spring)}
