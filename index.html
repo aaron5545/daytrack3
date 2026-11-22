@@ -66,20 +66,13 @@
   .type-seg{display:flex;width:100%}
   .type-seg button{flex:1;text-align:center;padding:9px 8px;font-size:13px}
 
-  .summary{display:flex;align-items:stretch;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:18px}
-  .sum-cell{display:flex;align-items:center;gap:14px;padding:12px 18px;min-width:0}
-  .sum-cell + .sum-cell{border-left:1px solid var(--line)}
-  .sum-success{flex:1}
-  .sum-hours{flex:none;width:300px}
-  .sum-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-  .mini-seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:7px;overflow:hidden;flex:none}
-  .mini-seg button{border:none;background:transparent;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:4px 8px;cursor:pointer;transition:background .14s var(--ease),color .14s var(--ease)}
-  .mini-seg button.on{background:var(--accent);color:#fff}
-  .sum-cell .track{flex:1;height:8px;background:var(--track);border-radius:99px;overflow:hidden;min-width:60px}
-  .sum-cell .fill{height:100%;background:var(--accent);border-radius:99px;width:0%;transition:width .55s var(--ease)}
-  .sum-big{font-family:var(--display);font-weight:600;font-size:17px;min-width:44px;text-align:right;color:var(--ink);white-space:nowrap}
-  .sum-sub{font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap}
-  .sum-hours .sum-big{min-width:0;text-align:left}
+  .meter{display:flex;align-items:center;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin-bottom:22px}
+  .meter .label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .16s var(--ease)}
+  .meter .label:hover{color:var(--accent)}
+  .meter .track{flex:1;height:8px;background:var(--track);border-radius:99px;overflow:hidden}
+  .meter .fill{height:100%;background:var(--accent);border-radius:99px;width:0%;transition:width .55s var(--ease)}
+  .meter .stat{font-family:var(--display);font-weight:600;font-size:16px;min-width:44px;text-align:right;transition:color .3s var(--ease)}
+  .meter .count{font-family:var(--mono);font-size:12px;color:var(--faint);white-space:nowrap}
 
   .board{display:grid;gap:12px;align-items:stretch}
   .board.view-week{grid-template-columns:repeat(7,minmax(0,1fr))}
@@ -136,18 +129,8 @@
   .empty{color:var(--faint);font-size:12px;font-style:italic;padding:10px 6px;animation:fadeIn .3s var(--ease) both}
   .drop-line{height:0;border-top:2px solid var(--accent);border-radius:2px;margin:1px 5px;pointer-events:none}
 
-  .col-foot{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:0 8px 0 0;border-top:1px solid var(--line)}
-  .hrs{display:flex;align-items:center;flex:none;height:26px;border:1px solid var(--line);border-radius:99px;background:var(--panel);font-family:var(--mono);font-size:12px;color:var(--faint);transition:border-color .16s var(--ease),background .16s var(--ease)}
-  .col:hover .hrs,.col.is-today .hrs{border-color:var(--line-strong)}
-  .hrs.has{color:var(--ink)}
-  .hrs .hv{min-width:30px;height:24px;border:none;background:transparent;color:inherit;font:inherit;font-weight:500;cursor:text;padding:0 2px;border-radius:6px;text-align:center}
-  .hrs .hv:hover{background:var(--hover)}
-  .hrs .hin{width:34px;height:22px;border:1px solid var(--accent);border-radius:6px;background:var(--field);color:var(--ink);font:inherit;text-align:center;outline:none;-moz-appearance:textfield}
-  .hrs .hin::-webkit-outer-spin-button,.hrs .hin::-webkit-inner-spin-button,.g-hin::-webkit-outer-spin-button,.g-hin::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-  .hrs .hb{border:none;background:transparent;color:var(--muted);width:22px;height:24px;border-radius:99px;cursor:pointer;font-family:var(--mono);font-size:14px;line-height:1;padding:0;transition:background .14s var(--ease),color .14s var(--ease)}
-  .hrs .hb:hover{background:var(--accent-soft);color:var(--accent)}
-  .hrs .hb:focus-visible,.hrs .hv:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-  .add-task{display:flex;align-items:center;gap:6px;flex:1;min-width:0;text-align:left;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:var(--body);font-size:12.5px;padding:11px 4px 11px 13px;white-space:nowrap;overflow:hidden;transition:color .14s var(--ease),background .14s var(--ease)}
+  .g-hin::-webkit-outer-spin-button,.g-hin::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .add-task{display:flex;align-items:center;gap:6px;width:100%;text-align:left;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:var(--body);font-size:12.5px;padding:9px 14px 12px 15px;transition:color .14s var(--ease),background .14s var(--ease)}
   .add-task:hover{color:var(--accent);background:var(--hover)}
   .add-task:active{background:var(--hover-2)}
   .add-task .plus{font-family:var(--mono);font-size:14px;line-height:1;transition:transform .18s var(--spring)}
@@ -332,18 +315,11 @@
     </div>
   </header>
 
-  <div class="summary">
-    <div class="sum-cell sum-success">
-      <div class="mini-seg" id="meterSeg"><button data-m="range" class="on" id="meterRangeBtn">Week</button><button data-m="month">Month</button></div>
-      <div class="track"><div class="fill" id="weekFill"></div></div>
-      <span class="sum-big" id="weekPct">0%</span>
-      <span class="sum-sub" id="weekCount">0 / 0 done</span>
-    </div>
-    <div class="sum-cell sum-hours">
-      <span class="sum-lbl" id="hoursLabel">Hours</span>
-      <span class="sum-big" id="hoursSum">0h</span>
-      <span class="sum-sub" id="hoursAvg">avg 0h/day</span>
-    </div>
+  <div class="meter">
+    <span class="label" id="meterLabel" title="Click to switch between week and month">Week success</span>
+    <div class="track"><div class="fill" id="weekFill"></div></div>
+    <span class="stat" id="weekPct">0%</span>
+    <span class="count" id="weekCount">0 / 0 done</span>
   </div>
 
   <div class="board view-week" id="board"></div>
@@ -406,6 +382,10 @@
         <label for="gLen">Length</label>
         <div class="g-row" style="align-items:center"><input class="text" id="gLen" type="number" min="1" max="730" step="1" style="max-width:110px" /><span class="g-eyebrow">days, start and end included</span></div>
         <div class="g-quick" id="gQuick"><button data-len="30">30 days</button><button data-len="60">60 days</button><button data-len="90">90 days</button><button data-len="180">6 months</button><button data-len="365">1 year</button></div>
+      </div>
+      <div class="field">
+        <label for="gTarget">Daily hours target</label>
+        <div class="g-row" style="align-items:center"><input class="text" id="gTarget" type="number" min="0.5" max="24" step="0.5" style="max-width:110px" /><span class="g-eyebrow">hours a day on average, a bar this tall is full height</span></div>
       </div>
       <div class="g-preview" id="gPreview"></div>
     </div>
@@ -577,6 +557,7 @@
   var boardEl=document.getElementById("board");
   var goalEl=document.getElementById("goal");
   var weekLabelEl=document.getElementById("weekLabel");
+  var meterLabelEl=document.getElementById("meterLabel");
   var weekFillEl=document.getElementById("weekFill");
   var weekPctEl=document.getElementById("weekPct");
   var weekCountEl=document.getElementById("weekCount");
@@ -702,32 +683,14 @@
     });
     col.appendChild(listEl);
 
-    var foot=document.createElement("div");foot.className="col-foot";
     var add=document.createElement("button");
     add.className="add-task";add.innerHTML='<span class="plus">+</span> Add task';
     add.setAttribute("data-day",dayISO);
     add.addEventListener("click",function(ev){ openTaskModal(ev.currentTarget.getAttribute("data-day")); });
-    foot.appendChild(add);
-    foot.appendChild(hoursControl(dayISO));
-    col.appendChild(foot);
+    col.appendChild(add);
     return col;
   }
 
-  function hoursControl(dayISO){
-    var box=document.createElement("div");
-    box.title="Hours worked \u00b7 click the number to type it";
-    function paint(){
-      var h=hoursOn(dayISO);
-      box.className="hrs"+(h?" has":"");
-      box.innerHTML='<button class="hb" aria-label="One hour less">\u2212</button><button class="hv" aria-label="Hours worked, click to type">'+h+'h</button><button class="hb" aria-label="One hour more">+</button>';
-      var b=box.querySelectorAll(".hb");
-      b[0].addEventListener("click",function(){ commitHours(dayISO,hoursOn(dayISO)-1); });
-      b[1].addEventListener("click",function(){ commitHours(dayISO,hoursOn(dayISO)+1); });
-      box.querySelector(".hv").addEventListener("click",function(){ editHoursInline(box.querySelector(".hv"),dayISO,"hin"); });
-    }
-    box._paint=paint; paint();
-    return box;
-  }
   // type an exact number of hours in place of a value element
   function editHoursInline(el,dayISO,cls){
     var inp=document.createElement("input");
@@ -746,7 +709,6 @@
   }
   function commitHours(dayISO,val){ setHoursOn(dayISO,val); refreshHoursUI(); }
   function refreshHoursUI(){
-    boardEl.querySelectorAll(".col").forEach(function(c){ var h=c.querySelector(".hrs"); if(h&&h._paint) h._paint(); });
     updateMeter(); renderGoal();
   }
 
@@ -777,28 +739,18 @@
   }
 
   function updateMeter(){
-    var done=0,total=0,label,days=[];
-    if(meterMode==="month"){
-      var s=monthSuccess(); done=s.done; total=s.total;
-      var now=parseISO(todayISO);
-      for(var d=new Date(now.getFullYear(),now.getMonth(),1); fmtISO(d)<=todayISO; d=addDays(d,1)) days.push(fmtISO(d));
-      label="This month";
-    } else {
-      visibleDays().forEach(function(dd){var iso=fmtISO(dd),v=dayTotals(iso);total+=v.total;done+=v.done;days.push(iso);});
-      label=state.view==="day"?"Day":state.view==="3day"?"3 days":"Week";
+    var done=0,total=0,label;
+    if(meterMode==="month"){ var s=monthSuccess(); done=s.done; total=s.total; label="Month success"; }
+    else{
+      visibleDays().forEach(function(d){var v=dayTotals(fmtISO(d));total+=v.total;done+=v.done;});
+      label=state.view==="day"?"Day success":state.view==="3day"?"3-day success":"Week success";
     }
     var pct=total?Math.round(done/total*100):0;
     weekFillEl.style.width=pct+"%";
     weekPctEl.textContent=pct+"%";
     weekPctEl.style.color=pct===100?"var(--accent)":"var(--ink)";
     weekCountEl.textContent=done+" / "+total+" done";
-    document.getElementById("meterRangeBtn").textContent=state.view==="day"?"Day":state.view==="3day"?"3 Days":"Week";
-    // hours over the same days; average counts only days up to today
-    var sum=0,n=0;
-    days.forEach(function(iso){ sum+=hoursOn(iso); if(iso<=todayISO)n++; });
-    document.getElementById("hoursLabel").textContent="Hours \u00b7 "+label;
-    document.getElementById("hoursSum").textContent=sum+"h";
-    document.getElementById("hoursAvg").textContent=n?("avg "+(Math.round(sum/n*10)/10)+"h/day"):"not started";
+    meterLabelEl.textContent=label;
   }
 
   function toggleTask(t,dayISO,row,chk){
@@ -870,6 +822,7 @@
     if(!m.start||!/^\d{4}-\d{2}-\d{2}$/.test(m.start)){m.start=todayISO;changed=true;}
     if(typeof m.total!=="number"||!(m.total>=1)){m.total=30;changed=true;}
     if(typeof m.name!=="string"||!m.name.trim()){m.name="Launch";changed=true;}
+    if(!(+m.target>0)){m.target=4;changed=true;}
     return changed;
   }
   function goalValues(){
@@ -887,6 +840,7 @@
   function tinyDate(iso){var d=parseISO(iso);return d.getDate()+" "+MONTHS[d.getMonth()].slice(0,3);}
   function r1(n){return Math.round(n*10)/10;}
   function goalDay(){ return goalSel||todayISO; }
+  function hoursTarget(){ var t=+state.milestone.target; return (t>0&&t<=24)?t:4; }
 
   function renderGoal(){
     if(!goalEl) return;
@@ -917,7 +871,7 @@
             '<div class="g-stepper"><button class="g-step" id="gMinus" aria-label="One hour less"'+(h<=0?' disabled':'')+'>−</button>'+
             '<button class="g-hval" id="gHval" title="Click to type the hours">'+h+'<small>h</small></button>'+
             '<button class="g-step" id="gPlus" aria-label="One hour more"'+(h>=24?' disabled':'')+'>+</button></div>'+
-            '<div class="g-hstats"><span><b>'+r1(v.avg)+'h</b> avg / day</span><span><b>'+v.hours+'h</b> total</span></div>'+
+            '<div class="g-hstats"><span><b>'+r1(v.avg)+'h</b> avg / day</span><span><b>'+v.hours+'h</b> total \u00b7 target '+hoursTarget()+'h</span></div>'+
           '</div>'+
         '</div>'+
       '</div>'+
@@ -969,13 +923,17 @@
     var avail=holder.clientHeight||0, rowH=Math.max(50,Math.min(92,Math.floor((avail-gap-axisH-2)/2)));
     var b1=rowH, b2=rowH*2+gap, H=b2+axisH;
     var total=v.total, slot=(W-LW)/total, barW=Math.max(1.5,Math.min(slot*0.64,18)), rx=Math.min(2,barW/2);
-    var peak=4; for(var k=0;k<=v.lastIdx;k++){var hk=hoursOn(fmtISO(addDays(parseISO(v.start),k))); if(hk>peak)peak=hk;}
+    var target=hoursTarget(), peak=target; for(var k=0;k<=v.lastIdx;k++){var hk=hoursOn(fmtISO(addDays(parseISO(v.start),k))); if(hk>peak)peak=hk;}
     var showVals=slot>=15, sel=goalDay();
     var mono='font-family:\'IBM Plex Mono\',monospace;';
     var out='', cols='';
-    out+='<text x="0" y="'+(b1-rowH/2+4)+'" style="'+mono+'font-size:10px;letter-spacing:.08em;fill:'+CF+'">TASKS</text>';
-    out+='<text x="0" y="'+(b2-rowH/2+4)+'" style="'+mono+'font-size:10px;letter-spacing:.08em;fill:'+CF+'">HOURS</text>';
+    out+='<text x="0" y="'+(b1-2)+'" style="'+mono+'font-size:10px;letter-spacing:.08em;fill:'+CF+'">TASKS</text>';
+    out+='<text x="0" y="'+(b2-2)+'" style="'+mono+'font-size:10px;letter-spacing:.08em;fill:'+CF+'">HOURS</text>';
     out+='<line x1="'+LW+'" y1="'+(b1+.5)+'" x2="'+W+'" y2="'+(b1+.5)+'" stroke="'+CL+'"/><line x1="'+LW+'" y1="'+(b2+.5)+'" x2="'+W+'" y2="'+(b2+.5)+'" stroke="'+CL+'"/>';
+    // daily target line in the hours row
+    var ty=(b2-(3+target/peak*(rowH-18))).toFixed(1);
+    out+='<line x1="'+LW+'" y1="'+ty+'" x2="'+W+'" y2="'+ty+'" stroke="'+CF+'" stroke-dasharray="3 4" stroke-opacity=".7"/>';
+    out+='<text x="'+(LW-6)+'" y="'+(+ty+3.5)+'" text-anchor="end" style="'+mono+'font-size:9.5px;fill:'+CF+'">'+target+'h</text>';
     // date axis: start, today, end (+ month starts on long goals)
     var ticks=[{i:0,t:tinyDate(v.start),a:"start"},{i:total-1,t:tinyDate(v.end),a:"end"}];
     if(v.raw>=0 && v.raw<total) ticks.push({i:v.raw,t:"today",a:"middle",today:true});
@@ -1020,13 +978,13 @@
 
   // ---- Goal modal ----
   var goalOverlay=document.getElementById("goalOverlay");
-  var gName=document.getElementById("gName"), gStart=document.getElementById("gStart"), gEnd=document.getElementById("gEnd"), gLen=document.getElementById("gLen"), gPreview=document.getElementById("gPreview"), gSaveBtn=document.getElementById("gSave");
+  var gTarget=document.getElementById("gTarget"), gName=document.getElementById("gName"), gStart=document.getElementById("gStart"), gEnd=document.getElementById("gEnd"), gLen=document.getElementById("gLen"), gPreview=document.getElementById("gPreview"), gSaveBtn=document.getElementById("gSave");
   var ISO_RE=/^\d{4}-\d{2}-\d{2}$/;
   function lenFromDates(){ if(!ISO_RE.test(gStart.value)||!ISO_RE.test(gEnd.value)) return null; return daysBetween(gStart.value,gEnd.value)+1; }
   function setEndFromLen(){ var n=Math.round(+gLen.value); if(ISO_RE.test(gStart.value)&&n>=1) gEnd.value=fmtISO(addDays(parseISO(gStart.value),Math.min(730,n)-1)); }
   function gDraft(){
-    var len=lenFromDates();
-    return {name:gName.value.trim(),start:gStart.value,total:len};
+    var len=lenFromDates(), tg=Math.round((+gTarget.value||0)*2)/2;
+    return {name:gName.value.trim(),start:gStart.value,total:len,target:tg};
   }
   function updateGoalPreview(){
     var d=gDraft(), ok=d.name && ISO_RE.test(d.start) && d.total && d.total>=1 && d.total<=730;
@@ -1035,18 +993,21 @@
     if(!d.name){ gPreview.textContent="Give your goal a name."; return; }
     if(!d.total||d.total<1){ gPreview.textContent="The end date has to be on or after the start date."; return; }
     if(d.total>730){ gPreview.textContent="Keep it under two years (730 days)."; return; }
+    if(!(d.target>=0.5&&d.target<=24)){ gPreview.classList.add("bad"); gSaveBtn.disabled=true; gPreview.textContent="Set a daily hours target between 0.5 and 24."; return; }
     var raw=daysBetween(d.start,todayISO), left=d.total-Math.max(0,Math.min(d.total,raw));
     gPreview.innerHTML='<b>'+d.total+'</b> days · '+(raw<0?'starts in <b>'+(-raw)+'</b> day'+(raw===-1?'':'s'):left===0?'already finished':'<b>'+left+'</b> day'+(left===1?'':'s')+' left')+' · ends <b>'+shortDate(fmtISO(addDays(parseISO(d.start),d.total-1)),true)+'</b>';
   }
   function openGoalModal(focusId){
     var m=state.milestone;
-    gName.value=m.name; gStart.value=m.start; gLen.value=m.total; setEndFromLen();
+    gName.value=m.name; gStart.value=m.start; gLen.value=m.total; gTarget.value=hoursTarget(); setEndFromLen();
     updateGoalPreview();
     goalOverlay.classList.add("open");
     setTimeout(function(){ var f=document.getElementById(focusId||"gName"); f.focus(); if(f.select) try{f.select();}catch(e){} },80);
   }
   function closeGoalModal(){ goalOverlay.classList.remove("open"); }
   gName.addEventListener("input",updateGoalPreview);
+  gTarget.addEventListener("input",updateGoalPreview);
+  gTarget.addEventListener("wheel",function(e){ if(document.activeElement===gTarget) e.preventDefault(); },{passive:false});
   gStart.addEventListener("input",function(){ setEndFromLen(); updateGoalPreview(); });
   gStart.addEventListener("change",function(){ setEndFromLen(); updateGoalPreview(); });
   function endChanged(){ var n=lenFromDates(); if(n) gLen.value=n; updateGoalPreview(); }
@@ -1055,10 +1016,10 @@
   document.getElementById("gQuick").querySelectorAll("button").forEach(function(b){
     b.addEventListener("click",function(){ gLen.value=b.getAttribute("data-len"); setEndFromLen(); updateGoalPreview(); });
   });
-  [gName,gStart,gEnd,gLen].forEach(function(el){ el.addEventListener("keydown",function(e){ if(e.key==="Enter"){e.preventDefault();saveGoal();} }); });
+  [gName,gStart,gEnd,gLen,gTarget].forEach(function(el){ el.addEventListener("keydown",function(e){ if(e.key==="Enter"){e.preventDefault();saveGoal();} }); });
   function saveGoal(){
     updateGoalPreview(); if(gSaveBtn.disabled) return;
-    var d=gDraft(); state.milestone={name:d.name,start:d.start,total:d.total}; save(); closeGoalModal(); goalSel=null; renderGoal(); toast("Goal saved");
+    var d=gDraft(); state.milestone={name:d.name,start:d.start,total:d.total,target:d.target}; save(); closeGoalModal(); goalSel=null; renderGoal(); toast("Goal saved");
   }
   gSaveBtn.addEventListener("click",saveGoal);
   document.getElementById("gCancel").addEventListener("click",closeGoalModal);
@@ -1262,7 +1223,7 @@
       html+='<div class="day-col" title="'+tip+'"><div class="day-bar-area"><div class="'+cls+'" style="height:'+barH+'px;animation-delay:'+(idx*0.03).toFixed(2)+'s"></div></div><span class="day-lbl">'+lab+'</span></div>';
     });
     html+='</div></div>';
-    var pk=4; a.last14.forEach(function(dd){if(dd.hrs>pk)pk=dd.hrs;});
+    var pk=hoursTarget(); a.last14.forEach(function(dd){if(dd.hrs>pk)pk=dd.hrs;});
     html+='<div><div class="an-h">Hours worked \u00b7 last 14 days</div><div class="day-chart">';
     a.last14.forEach(function(dd,idx){
       var barH=dd.hrs?Math.max(4,Math.round(dd.hrs/pk*120)):3;
@@ -1377,14 +1338,7 @@
   document.getElementById("prevBtn").addEventListener("click",function(){anchor=addDays(anchor,-stepSize());renderAll(true);});
   document.getElementById("nextBtn").addEventListener("click",function(){anchor=addDays(anchor,stepSize());renderAll(true);});
   document.getElementById("todayBtn").addEventListener("click",function(){anchor=parseISO(todayISO);renderAll(true);});
-  var meterSeg=document.getElementById("meterSeg");
-  meterSeg.querySelectorAll("button").forEach(function(b){
-    b.addEventListener("click",function(){
-      meterMode=b.getAttribute("data-m");
-      meterSeg.querySelectorAll("button").forEach(function(x){x.classList.toggle("on",x===b);});
-      updateMeter();
-    });
-  });
+  meterLabelEl.addEventListener("click",function(){ meterMode = meterMode==="month"?"range":"month"; updateMeter(); });
 
   var rzTimer=null;
   window.addEventListener("resize",function(){
